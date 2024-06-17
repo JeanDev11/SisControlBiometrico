@@ -1,0 +1,18 @@
+CREATE TABLE empleados (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    codigo VARCHAR(50) UNIQUE NOT NULL,
+    dni VARCHAR(20) NOT NULL,
+    nacimiento DATE NOT NULL,
+    cargo VARCHAR(100) NOT NULL,
+    huella_digital BYTEA,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE TABLE asistencia (
+    id SERIAL PRIMARY KEY,
+    empleado_id INTEGER NOT NULL,
+    fecha_hora TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    FOREIGN KEY (empleado_id) REFERENCES empleados(id)
+);
